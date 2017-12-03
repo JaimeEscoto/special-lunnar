@@ -173,25 +173,20 @@
 			<div class="row">
         <div id="fh5co-board" data-columns>
 					<?php
-							include "getPhotoPostByPhotoLink.php";
-							$mostLikedPhotoLinks = include 'getMostLikedPhotoLinks.php';
-							//echo $mostLikedPhotoLinks;
-							while ($row = mysqli_fetch_array($mostLikedPhotoLinks)) {
-									//echo $row['qty'].$row['photoLink'];
-
-
-									$result = getPhotoPostByPhotoLink($row['photoLink']);
-									$photoURL = $result->graphql->shortcode_media->display_url;
-									//$photoURL = $result->graphql->shortcode_media->display_resources[0]->src;
-									$photoCaption = $result->graphql->shortcode_media->edge_media_to_caption->edges[0]->node->text;
-									$q_likes = $result->graphql->shortcode_media->edge_media_preview_like->count;
-									$q_comments= $result->graphql->shortcode_media->edge_media_to_comment->count;
-									$likesPeople =$result->graphql->shortcode_media->edge_media_preview_like->edges;
-									$commentsPeople = $result->graphql->shortcode_media->edge_media_to_comment->edges;
-									$username=$result->graphql->shortcode_media->owner->username;
-								?>
-
-
+              include "getPhotoPostByPhotoLink.php";
+              $mostLikedPhotoLinks = include 'getMostLikedPhotoLinks.php';
+              //echo $mostLikedPhotoLinks;
+              while ($row = mysqli_fetch_array($mostLikedPhotoLinks)) {
+                  //echo $row['qty'].$row['photoLink'];
+                  $result = getPhotoPostByPhotoLink($row['photoLink']);
+                  $photoURL = $result->graphql->shortcode_media->display_url;
+                  //$photoURL = $result->graphql->shortcode_media->display_resources[0]->src;
+                  $photoCaption = $result->graphql->shortcode_media->edge_media_to_caption->edges[0]->node->text;
+                  $q_likes = $result->graphql->shortcode_media->edge_media_preview_like->count;
+                  $q_comments= $result->graphql->shortcode_media->edge_media_to_comment->count;
+                  $likesPeople =$result->graphql->shortcode_media->edge_media_preview_like->edges;
+                  $commentsPeople = $result->graphql->shortcode_media->edge_media_to_comment->edges;
+                  $username=$result->graphql->shortcode_media->owner->username; ?>
         	<div class="item">
         		<div class="animate-box">
 	        		<a href="<?php echo  $photoURL; ?>" class="image-popup fh5co-board-img"
@@ -237,8 +232,8 @@
 						</div>
         	</div>
 				<?php
-			}
-				?>
+              }
+                ?>
         </div>
         </div>
        </div>

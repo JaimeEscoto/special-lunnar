@@ -19,10 +19,9 @@ $url="";
 
 echo $nombres[sizeof($nombres)-1]; // Juan
 for ($i=1; $i < sizeof($nombres)-1  ; $i++) {
-
-  if ($i>0) {
-    # code...
-  }
+    if ($i>0) {
+        # code...
+    }
     $url=$url.$nombres[$i];
     if ($i>0) {
         $url=$url."/";
