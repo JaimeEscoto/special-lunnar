@@ -172,7 +172,16 @@
 		</div>
 	</header>
 	<!-- END .header -->
-
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<!-- JE_Site_01 -->
+	<ins class="adsbygoogle"
+	     style="display:block"
+	     data-ad-client="ca-pub-2987567760800321"
+	     data-ad-slot="2796881558"
+	     data-ad-format="auto"></ins>
+	<script>
+	(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
 
 	<div id="fh5co-main">
 		<div class="container">
