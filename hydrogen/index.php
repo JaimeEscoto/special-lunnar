@@ -13,7 +13,7 @@
 
 		  gtag('config', 'UA-27162090-5');
 		</script>
-		
+
 
 
 
@@ -186,33 +186,10 @@
 
 					-->
 					<?php
+							include "getPhotoPostsByUsername.php";
+							$result=getPhotoPostsByUsername();
 
-
-							if (isset($_GET["username"])) {
-								$username=$_GET["username"];
-							}
-							else {
-								$username = "BestShot.tk";
-								//$username = "SexyShot.tk";
-							}
-
-
-							$url = "https://www.instagram.com/".$username."/?__a=1";
-
-
-							$ch = curl_init();
-
-							curl_setopt($ch, CURLOPT_URL, $url);
-							curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-							curl_setopt($ch, CURLOPT_TIMEOUT, 20);
-
-							$result = curl_exec($ch);
-							curl_close($ch);
-
-							$result = json_decode($result);
-							$ultraResult=$result->user->media->nodes;
-
-							foreach($ultraResult as $post){ ?>
+							foreach($result as $post){ ?>
 	<!--
 	----------------------------------------------
 

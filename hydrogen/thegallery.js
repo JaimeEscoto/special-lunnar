@@ -76,16 +76,6 @@ function setLikeToPhoto(photoLink, divname="") {
                 //alert(thi.responseText);
             }
         };
-
-        //alert(geolocationData.ip);
-        //alert(geolocationData.city);
-        //alert("&ip="+geolocationData.ip +"hola"+ geolocationData.city);
-        //var ip = geolocationData.ip;
-        //alert("esta es la ip"+ip);
-        //alert(typeof(ip));
-        //alert("setLikeToPhoto.php?q=" + photoLink+"&ip="+  geolocationData.ip   +"&city="+ geolocationData.city +"&country_code="+ geolocationData.country_code +"&latitude="+ geolocationData.latitude+"&longitude="+ geolocationData.longitude);
-      //  alert(string.concat("CONCAT&ip="+  geolocationData.ip ,"&city="+ geolocationData.city ,"&country_code="+ geolocationData.country_code ,"&latitude="+ geolocationData.latitude,"&longitude="+ geolocationData.longitude));
-
         xmlhttp.open("GET", "setLikeToPhoto.php?q=" + photoLink+"&ip="+  geolocationData.ip   +"&city="+ geolocationData.city +"&country_code="+ geolocationData.country_code +"&latitude="+ geolocationData.latitude+"&longitude="+ geolocationData.longitude, true);
         xmlhttp.send();
     }
