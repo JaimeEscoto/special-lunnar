@@ -33,8 +33,8 @@ if (isset($_GET['longitude'])) {
 else {
     $longitude=1;
 }
-if (isset($_GET['latutide'])) {
-    $latutide = ($_GET['latutide']);
+if (isset($_GET['latitude'])) {
+    $latutide = ($_GET['latitude']);
 }
 else {
     $latutide=1;
