@@ -172,39 +172,28 @@
 		</div>
 	</header>
 	<!-- END .header -->
-	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-	<!-- JE_Site_01 -->
-	<ins class="adsbygoogle"
-	     style="display:block"
-	     data-ad-client="ca-pub-2987567760800321"
-	     data-ad-slot="2796881558"
-	     data-ad-format="auto"></ins>
-	<script>
-	(adsbygoogle = window.adsbygoogle || []).push({});
-	</script>
-
+	<div class="container">
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<!-- JE_Site_01 -->
+		<ins class="adsbygoogle"
+		     style="display:block"
+		     data-ad-client="ca-pub-2987567760800321"
+		     data-ad-slot="2796881558"
+		     data-ad-format="auto"></ins>
+		<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+	</div>
 	<div id="fh5co-main">
 		<div class="container">
-
 			<div class="row">
-
         <div id="fh5co-board" data-columns>
-
-					<!--
-					----------------------------------------------
-
-					-->
 					<?php
-							include "getPhotoPostsByUsername.php";
-							$username="BestShot.tk";
-							$result=getPhotoPostsByUsername($username);
-
-							foreach($result as $post){ ?>
-	<!--
-	----------------------------------------------
-
-	-->
-
+          include "getPhotoPostsByUsername.php";
+          $username="BestShot.tk";
+          $result=getPhotoPostsByUsername($username);
+          foreach ($result as $post) {
+              ?>
         	<div class="item">
         		<div class="animate-box">
 	        		<a href="<?php echo  $post->display_src ?>" class="image-popup fh5co-board-img"
@@ -222,10 +211,8 @@
 													<script> getQtyPhotoLikes('<?php echo $post->code; ?>','qty<?php echo $post->code; ?>')</script>
 												</rr></h5>
 											</p>
-
 										</div>
 									</td>
-
 									<td>
 										<div class="qty<?php echo $post->code; ?>" id="qty<?php echo $post->code; ?>">
 											<p><h5><input width="95%" type="image" src="images/lovecolor.png" onclick="setSuperLike('<?php echo $username; ?>','<?php echo $post->code; ?>')">
@@ -246,20 +233,15 @@
 						</div>
         	</div>
 				<?php
-			}
+          }
 
-				?>
-
-
-
-
+        ?>
         </div>
         </div>
        </div>
 	</div>
 
 	<footer id="fh5co-footer">
-
 		<div class="container">
 			<div class="row row-padded">
 				<div class="col-md-12 text-center">
@@ -275,7 +257,6 @@
 			</div>
 		</div>
 	</footer>
-
 
 	<!-- jQuery -->
 	<script src="js/jquery.min.js"></script>
