@@ -1,12 +1,9 @@
 <?php
 function getPhotoPostsByUsername($username="") {
-if ($username!="") {
-  $username=$_GET["username"];
-}
-else {
+if ($username=="" || $username==null) {
   $username = "BestShot.tk";
-
 }
+
 $url = "https://www.instagram.com/".$username."/?__a=1";
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);

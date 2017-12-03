@@ -187,7 +187,8 @@
 					-->
 					<?php
 							include "getPhotoPostsByUsername.php";
-							$result=getPhotoPostsByUsername();
+							$username="BestShot.tk";
+							$result=getPhotoPostsByUsername($username);
 
 							foreach($result as $post){ ?>
 	<!--
