@@ -190,7 +190,12 @@
         <div id="fh5co-board" data-columns>
 					<?php
           include "getPhotoPostsByUsername.php";
-          $username="BestShot.tk";
+                    if (!isset($_GET["username"])) {
+                        $username="BestShot.tk";
+                    } else {
+                        $username=$_GET["username"];
+                    }
+
           $result=getPhotoPostsByUsername($username);
           foreach ($result as $post) {
               ?>
