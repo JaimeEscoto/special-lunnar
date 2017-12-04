@@ -190,15 +190,21 @@
         <div id="fh5co-board" data-columns>
 					<?php
           include "getPhotoPostsByUsername.php";
+<<<<<<< HEAD
+=======
+>>>>>>> DevJaime
                     if (!isset($_GET["username"])) {
                         $username="BestShot.tk";
                     } else {
                         $username=$_GET["username"];
                     }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> DevJaime
           $result=getPhotoPostsByUsername($username);
           foreach ($result as $post) {
-              ?>
         	<div class="item">
         		<div class="animate-box">
 	        		<a href="<?php echo  $post->display_src ?>" class="image-popup fh5co-board-img"
@@ -210,8 +216,6 @@
 									<td>
 										<div class="qty<?php echo  $post->code; ?>" >
 											<p>
-
-												<input width="60%" type="image" src="images/like.png" onclick="setLikeToPhoto('<?php echo  $post->code; ?>','qty<?php echo  $post->code; ?>')" style="float: left;">
 												<h5><rr id="qty<?php echo  $post->code; ?>">
 													<script> getQtyPhotoLikes('<?php echo $post->code; ?>','qty<?php echo $post->code; ?>')</script>
 												</rr></h5>

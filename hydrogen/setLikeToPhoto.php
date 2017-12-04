@@ -40,7 +40,6 @@ if (!$conn) {
 }
 $nowFormat = date('Y-m-d H:i:s');
 
-$sql = "INSERT INTO Likes(photoLink, date, ip, country_code, city, latitude, longitude) VALUES ('" . $q . "','" . $nowFormat . "','" . $ip . "','" . $country_code . "','" . $city . "'," . $latutide . "," . $longitude . ")";
 if ($result = $conn->query($sql)) {
 } else {
     die('Could not connect: ' . mysqli_error($conn));
