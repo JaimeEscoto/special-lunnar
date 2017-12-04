@@ -47,6 +47,7 @@ function getQtyPhotoLikes(photoLink, divname = "") {
   }
 }
 
+function setLikeToPhoto(photoLink, caption = "", username = "", photoURL = "", divname = "") {
   //alert("HOLAaaaaaaaaaaaaa");
   //show();
   //alert(divname);
@@ -74,6 +75,7 @@ function getQtyPhotoLikes(photoLink, divname = "") {
         //alert(thi.responseText);
       }
     };
+    xmlhttp.open("GET", "setLikeToPhoto.php?q=" + photoLink + "&ip=" + geolocationData.ip + "&city=" + geolocationData.city + "&country_code=" + geolocationData.country_code + "&latitude=" + geolocationData.latitude + "&longitude=" + geolocationData.longitude + "&caption=" + caption + "&username=" + username + "&photoURL=" + photoURL, true);
     xmlhttp.send();
   }
 }

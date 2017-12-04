@@ -192,6 +192,15 @@
           include "getPhotoPostsByUsername.php";
 <<<<<<< HEAD
 =======
+
+                    if (isset($_GET["username"])) {
+                        $username=$_GET["username"];
+                    } else {
+                        # code...
+                        $username="bestshot.tk";
+                    }
+
+
 >>>>>>> DevJaime
                     if (!isset($_GET["username"])) {
                         $username="BestShot.tk";
@@ -205,6 +214,8 @@
 >>>>>>> DevJaime
           $result=getPhotoPostsByUsername($username);
           foreach ($result as $post) {
+              $captionString=urlencode($post->caption); ?>
+
         	<div class="item">
         		<div class="animate-box">
 	        		<a href="<?php echo  $post->display_src ?>" class="image-popup fh5co-board-img"
@@ -216,6 +227,8 @@
 									<td>
 										<div class="qty<?php echo  $post->code; ?>" >
 											<p>
+												<input width="60%" type="image" src="images/like.png" onclick="setLikeToPhoto('<?php echo  $post->code; ?>','<?php
+                                                echo $captionString; ?> ',' <?php echo $username; ?>','<?php echo $post->display_src; ?>','qty<?php echo  $post->code; ?>')" style="float: left;">
 												<h5><rr id="qty<?php echo  $post->code; ?>">
 													<script> getQtyPhotoLikes('<?php echo $post->code; ?>','qty<?php echo $post->code; ?>')</script>
 												</rr></h5>

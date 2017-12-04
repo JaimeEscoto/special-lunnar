@@ -33,12 +33,29 @@ if (isset($_GET['latitude'])) {
 } else {
     $latutide = 1;
 }
+if (isset($_GET['caption'])) {
+    $caption = ($_GET['caption']);
+} else {
+    $caption = "";
+}
+if (isset($_GET['username'])) {
+    $username = ($_GET['username']);
+} else {
+    $username = "";
+}
+if (isset($_GET['photoURL'])) {
+    $photoURL = ($_GET['photoURL']);
+} else {
+    $photoURL = "";
+}
 
 $conn = getTheGalleryConnection();
 if (!$conn) {
     die('Could not connect: ' . mysqli_error($conn));
 }
 $nowFormat = date('Y-m-d H:i:s');
+
+$sql = "INSERT INTO Likes(photoLink, date, ip, country_code, city, latitude, longitude, caption, username, photoURL) VALUES ('" . $q . "','" . $nowFormat . "','" . $ip . "','" . $country_code . "','" . $city . "'," . $latutide . "," . $longitude . ",'". $caption."','".$username."','".$photoURL ."')";
 
 if ($result = $conn->query($sql)) {
 } else {

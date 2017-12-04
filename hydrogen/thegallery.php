@@ -186,6 +186,9 @@
                   $q_comments= $result->graphql->shortcode_media->edge_media_to_comment->count;
                   $likesPeople =$result->graphql->shortcode_media->edge_media_preview_like->edges;
                   $commentsPeople = $result->graphql->shortcode_media->edge_media_to_comment->edges;
+                  $username=$result->graphql->shortcode_media->owner->username;
+                  $captionString=urlencode($photoCaption); ?>
+
         	<div class="item">
         		<div class="animate-box">
 	        		<a href="<?php echo  $photoURL; ?>" class="image-popup fh5co-board-img"
@@ -201,6 +204,7 @@
 
 											<p>
 
+												<input width="60%" type="image" src="images/like.png" onclick="setLikeToPhoto('<?php echo $row['photoLink']; ?>','<?php echo $captionString; ?>','<?php echo $username; ?>','<?php echo $photoURL ?>','qty<?php echo $row['photoLink'] ?>')" style="float: left;">
 												<h5><rr id="qty<?php echo $row['photoLink'] ?>"> <?php echo $row['qty'] ?></rr></h5>
 											</p>
 										</div>
