@@ -39,3 +39,12 @@ Fecha: '2017-12-03 17:49'
   xmlhttp.open("GET", "http://freegeoip.net/json/", true);
   xmlhttp.send();
   ```
+
+- Instagram:
+
+  ```
+   $url = "https://www.instagram.com/".$username."/?__a=1";
+   $url = "https://www.instagram.com/doubleday11?__a=1";
+   $url = "https://www.instagram.com/p/".$photoLink."/?__a=1";
+   $url = "https://www.instagram.com/p/BcLkQ4ijoum/?__a=1";
+  ```

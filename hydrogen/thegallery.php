@@ -1,10 +1,11 @@
-
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script type="text/javascript" charset="utf-8" src="waypoints.min.js"></script>
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-27162090-5"></script>
 		<script>
 		  window.dataLayer = window.dataLayer || [];
@@ -170,7 +171,7 @@
 	<div id="fh5co-main">
 		<div class="container">
 
-			<div class="row">
+			<div class="row" id ="myrow">
         <div id="fh5co-board" data-columns>
 					<?php
               include "getPhotoPostByPhotoLink.php";
@@ -179,7 +180,7 @@
               while ($row = mysqli_fetch_array($mostLikedPhotoLinks)) {
                   //echo $row['qty'].$row['photoLink'];
                   $result = getPhotoPostByPhotoLink($row['photoLink']);
-                  $photoURL = $result->graphql->shortcode_media->display_url;
+                  $photoURL = $result->graphql->shortcode_media->display_resources[0]->src;
                   //$photoURL = $result->graphql->shortcode_media->display_resources[0]->src;
                   $photoCaption = $result->graphql->shortcode_media->edge_media_to_caption->edges[0]->node->text;
                   $q_likes = $result->graphql->shortcode_media->edge_media_preview_like->count;
@@ -187,53 +188,51 @@
                   $likesPeople =$result->graphql->shortcode_media->edge_media_preview_like->edges;
                   $commentsPeople = $result->graphql->shortcode_media->edge_media_to_comment->edges;
                   $username=$result->graphql->shortcode_media->owner->username; ?>
-        	<div class="item">
-        		<div class="animate-box">
-	        		<a href="<?php echo  $photoURL; ?>" class="image-popup fh5co-board-img"
-								title="<?php echo  $photoCaption; ?>"><img src="<?php echo  $photoURL ?>" alt="Free HTML5 Bootstrap template"></a>
-        		</div>
-        		<div class="fh5co-desc">
-							<table>
-								<tr>
-									<td>
+            <div class="item">
+                <div class="animate-box">
+                    <a href="<?php echo  $photoURL; ?>" class="image-popup fh5co-board-img"
+                                title="<?php echo  $photoCaption; ?>"><img src="<?php echo  $photoURL ?>" alt="Free HTML5 Bootstrap template"></a>
+                </div>
+                <div class="fh5co-desc">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div class="qty<?php echo $row['photoLink'] ?>" >
+                                            <p>
+                                                <input width="60%" type="image" src="images/like.png" onclick="setLikeToPhoto('<?php echo $row['photoLink']; ?>','qty<?php echo $row['photoLink'] ?>')" style="float: left;">
+                                                <h5><rr id="qty<?php echo $row['photoLink'] ?>"> <?php echo $row['qty'] ?></rr></h5>
+                                            </p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="lovecolor<?php echo $row['photoLink'] ?>">
+                                            <p>
+                                                <input width="100%" type="image" src="images/lovecolor.png" onclick="setSuperLike('<?php echo $username; ?>','<?php echo $row['photoLink']; ?>')" style="float: rigth;">
+                                            </p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="colors<?php echo $row['photoLink'] ?>">
+                                            <p>
+                                                <input width="60%" type="image" src="images/colors.png" onclick="goToSearch()"  style="float: rigth;">
+                                            </p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                            <strong><u>@<?php echo $username; ?></u></strong>
+                            <?php  echo  $photoCaption; ?>
+                        </div>
+            </div>
+                <?php
 
-										<div class="qty<?php echo $row['photoLink'] ?>" >
-
-
-											<p>
-
-												<input width="60%" type="image" src="images/like.png" onclick="setLikeToPhoto('<?php echo $row['photoLink']; ?>','qty<?php echo $row['photoLink'] ?>')" style="float: left;">
-												<h5><rr id="qty<?php echo $row['photoLink'] ?>"> <?php echo $row['qty'] ?></rr></h5>
-											</p>
-										</div>
-									</td>
-
-									<td>
-										<div class="lovecolor<?php echo $row['photoLink'] ?>">
-											<p>
-
-												<input width="100%" type="image" src="images/lovecolor.png" onclick="setSuperLike('<?php echo $username; ?>','<?php echo $row['photoLink']; ?>')" style="float: rigth;">
-
-											</p>
-										</div>
-									</td>
-									<td>
-
-										<div class="colors<?php echo $row['photoLink'] ?>">
-											<p>
-												<input width="60%" type="image" src="images/colors.png" onclick="goToSearch()"  style="float: rigth;">
-											</p>
-										</div>
-									</td>
-								</tr>
-							</table>
-							<strong><u>@<?php echo $username; ?></u></strong>
-							<?php  echo  $photoCaption; ?>
-						</div>
-        	</div>
-				<?php
+                  break;
               }
                 ?>
+
+
+
+
         </div>
         </div>
        </div>
@@ -251,7 +250,8 @@
 						<a href="#"><i class="icon-dribbble"></i></a>
 						<a href="#"><i class="icon-youtube"></i></a>
 					</p>
-					<p><small>&copy; The Gallery - All Rights Reserved. <br>Template designed by: <a href="http://freehtml5.co/" target="_blank">FREEHTML5.co</a> | </small></p>
+					<rr id="final">Loading</rr>
+					<p id="bottomspace"><small>&copy; The Gallery - All Rights Reserved. <br>Template designed by: <a href="http://freehtml5.co/" target="_blank">FREEHTML5.co</a> | </small></p>
 				</div>
 			</div>
 		</div>
@@ -273,9 +273,213 @@
 	<!-- Main JS -->
 	<script src="js/main.js"></script>
 
+	<script type="text/javascript">
+
+	var splittedPhotoPosts=[];
+	var qtyPrinted=0;
+	var totalQty=0;
+	var jsonPhotoPost=[];
+
+	function cargarMas(fin) {
+			var max=9;
+			var grid = document.querySelector('#fh5co-board');
+			var item = document.createElement('article');
+		for (var i = qtyPrinted; (i < splittedPhotoPosts.length) && (max>=0) ; i++) {
+			max--;
+			item = document.createElement('article');
+			salvattore.appendElements(grid, [item]);
+			item.outerHTML = splittedPhotoPosts[i];
+		}
+		//qtyPrinted+=10;
+		fin.enable();
+	}
+	/*var opts = {
+		offset: 'bottom-in-view'
+	};
+		$('#final').waypoint(function(event,direction) {
+			if (direction == "down") {
+				var fin = $(this);
+        fin.css({'visibility' : 'visible'}); // mostramos "cargando..."
+        fin.waypoint('remove'); // eliminamos el waypoint mientras mostramos datos
+				alert("vamos pa bajo");
+				cargarMas();
+				//document.getElementById("last").outerHTML = text;
+				fin.css({'visibility' : 'hidden'});
+        // reestablecemos el waypoint
+        fin.waypoint(opts)
+				//alert(divname);
+				//$('#ciudades').text(ciudades[1]);
+			}
+		}, {
+			offset: 'bottom-in-view'
+		});
+		*/
+	var waypoint = new Waypoint({
+  element: document.getElementById('final'),
+  handler: function( direction ) {
+		if (direction == 'down') {
+
+			 //alert("vamos down");
+				//fin.css({'visibility' : 'visible'}); // mostramos "cargando..."
+				fin.disable() // eliminamos el waypoint mientras mostramos datos
+				// el settimeout "simula" la carga de datos (se debe quitar)
+
+				//Agregar photoPosts
+				cargarMas(fin);
+				// una vez pintadas las nuevas ciudades escondemos "cargando..."
+				//fin.css({'visibility' : 'hidden'});
+				// reestablecemos el waypoint
+				//alert("hola");
+//	 }
+}
+  },
+  offset: 'bottom-in-view' // big enough to be crossed already
+})
+var fin = waypoint;
+function splitPhotoPosts() {
+	if (window.XMLHttpRequest) {
+		// code for IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp = new XMLHttpRequest();
+	} else {
+		// code for IE6, IE5
+		xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var text = (this.responseText);
+			splittedPhotoPosts = text.split("<xxppxxpp>")
+			totalQty=splittedPhotoPosts.length;
+			alert(splittedPhotoPosts[0]);
+		}
+	};
+	xmlhttp.open("GET", "cicloparaGallery.php", true);
+	xmlhttp.send();
+}
+function objLength(obj){
+  var i=0;
+  for (var x in obj){
+    if(obj.hasOwnProperty(x)){
+      i++;
+    }
+  }
+  return i;
+}
 
 
+//alert(objLength(JSONObject)); //returns 4
+function getBasicPhotoPostData() {
+alert("Get basic");
+	if (window.XMLHttpRequest) {
+		// code for IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp = new XMLHttpRequest();
+	} else {
+		// code for IE6, IE5
+		xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			//var text = (this.responseText);
+
+			jsonPhotoPost = JSON.parse(this.responseText);
+			totalQty = objLength( jsonPhotoPost);
+			//alert(jsonPhotoPost[0].photoLink);
+			//alert(totalQty);
+			showPhotoPostData();
+
+		}
+	};
+	xmlhttp.open("GET", "getBasicPhotoPostData.php", true);
+
+	xmlhttp.send();
+}
 
 
+//splitPhotoPosts();
+var html = `
+<div class="item">
+	<div class="animate-box bounceIn animated">
+		<a href="photoURL" class="image-popup fh5co-board-img"
+			title="caption"><img src="photoURL" alt="Free HTML5 Bootstrap template"></a>
+	</div>
+	<div class="fh5co-desc">
+		<table>
+			<tr>
+				<td>
+					<div class="qtyphotoLink" >
+						<p>
+							<input width="60%" type="image" src="images/like.png" onclick="setLikeToPhoto('photoLink','qtyphotoLink')" style="float: left;">
+							<h5><rr id="qtyphotoLink"> qty</rr></h5>
+						</p>
+					</div>
+				</td>
+				<td>
+					<div class="lovecolorphotoLink">
+						<p>
+							<input width="100%" type="image" src="images/lovecolor.png" onclick="setSuperLike('username','photoLink})" style="float: rigth;">
+						</p>
+					</div>
+				</td>
+				<td>
+					<div class="colorsphotoLink">
+						<p>
+							<input width="60%" type="image" src="images/colors.png" onclick="goToSearch()"  style="float: rigth;">
+						</p>
+					</div>
+				</td>
+			</tr>
+		</table>
+		<strong><u>@ username</u></strong>
+		caption
+	</div>
+</div>
+
+`;
+function showPhotoPostData()
+{
+
+			var max=9;
+			var grid = document.querySelector('#fh5co-board');
+			var item = document.createElement('article');
+			var actualObject=null;
+			var res="";
+			alert("total qt"+totalQty);
+			alert("qTYp"+ qtyPrinted);
+			alert("max"+max);
+
+		for (var i = qtyPrinted; (i < totalQty-1) && (max>=0) ; i++) {
+			//alert("FOR");
+			max--;
+			item = document.createElement('article');
+			salvattore.appendElements(grid, [item]);
+			actualObject = jsonPhotoPost[i];
+			res = html;
+			//res = res.replace("{$photoLink}",actualObject.photoLink);
+			//alert(actualObject.photoURL);
+			res = res.replace("photoLink",actualObject.photoLink);
+			res = res.replace("photoLink",actualObject.photoLink);
+			res = res.replace("photoLink",actualObject.photoLink);
+			res = res.replace("photoLink",actualObject.photoLink);
+			res = res.replace("photoURL",actualObject.photoURL);
+			res = res.replace("photoURL",actualObject.photoURL);
+			res = res.replace("username",actualObject.username);
+			res = res.replace("username",actualObject.username);
+			res = res.replace("username",actualObject.username);
+			res = res.replace("caption",actualObject.caption);
+			res = res.replace("caption",actualObject.caption);
+			res = res.replace("qty",actualObject.qty);
+			alert(res);
+			item.outerHTML = res;
+			qtyPrinted++;
+		}
+
+		fin.enable();
+}
+	$(document).ready(function(){
+		getBasicPhotoPostData();
+		alert("HOLA");
+	 })
+
+
+	</script>
 	</body>
 </html>

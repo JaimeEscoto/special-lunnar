@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="waypoints.min.js"></script>
+
+<body>
+
+  <div style="height: 500px">Scroll down</div>
+  <div id="ciudades">Aqui Ciudades</div>
+
+  <div id="waypoint2">Fin de este</div>
+
+  <div style="height: 500px" id="waypoint">Waypoint</div>
+
+
+  <script type="text/javascript">
+    function cargarMas() {
+
+      if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+      } else {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          var text = (this.responseText);
+          document.getElementById("ciudades").innerHTML += text;
+
+          //alert(divname);
+        }
+      };
+      xmlhttp.open("GET", "ciclo.php", true);
+
+      xmlhttp.send();
+
+    }
+    var ciudades = ['ALCALA_DE_HENARES', 'AMSTERDAM', 'ARANJUEZ', 'ATENAS', 'BARCELONA', 'BERLIN', 'BOGOTA',
+      'BRUJAS', 'BRUSELAS', 'BUCAREST', 'BUENOS_AIRES', 'COPENHAGUEN', 'CASABLANCA', 'DUBLIN', 'DUBROVNIK',
+      'EL_CAIRO', 'ESTAMBUL', 'LONDRES', 'MALAGA', 'MOSCU', 'NUEVA_DELHI', 'NUEVA_YORK', 'OPORTO', 'OSLO',
+      'PALMA_DE_MALLORCA', 'PARIS', 'PEKIN', 'RIO_DE_JANEIRO', 'ROMA', 'TOKIO', 'TORONTO', 'VIENA'
+    ];
+
+    $('#waypoint2').waypoint(function(direction) {
+      if (direction == "down") {
+        alert("vamos pa bajo");
+        cargarMas();
+      }
+    }, {
+      offset: 'bottom-in-view'
+    });
+  </script>
+
+
+
+</body>
+
+</html>

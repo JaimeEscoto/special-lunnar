@@ -47,8 +47,12 @@ function getQtyPhotoLikes(photoLink, divname = "") {
   }
 }
 
-function setLikeToPhoto(photoLink, divname = "") {
-  //alert("HOLAaaaaaaaaaaaaa");
+function setLikeToPhoto(photoLink, caption, username, photoURL, divname = "") {
+
+  alert(caption);
+  alert(username);
+  alert(photoURL);
+  alert(divname);
   //show();
   //alert(divname);
   if (document.getElementById("loader")) {
@@ -72,10 +76,11 @@ function setLikeToPhoto(photoLink, divname = "") {
       if (this.readyState == 4 && this.status == 200) {
         getQtyPhotoLikes(photoLink, divname);
         //document.getElementById("qtyPhotoLikes").innerHTML = this.responseText;
-        //alert(thi.responseText);
+        alert(this.responseText);
       }
     };
-    xmlhttp.open("GET", "setLikeToPhoto.php?q=" + photoLink + "&ip=" + geolocationData.ip + "&city=" + geolocationData.city + "&country_code=" + geolocationData.country_code + "&latitude=" + geolocationData.latitude + "&longitude=" + geolocationData.longitude, true);
+    alert("setLikeToPhoto.php?q=" + photoLink + "&ip=" + geolocationData.ip + "&city=" + geolocationData.city + "&country_code=" + geolocationData.country_code + "&latitude=" + geolocationData.latitude + "&longitude=" + geolocationData.longitude + "&caption=" + caption + "&username=" + username + "&photoURL=" + photoURL);
+    xmlhttp.open("GET", "setLikeToPhoto.php?q=" + photoLink + "&ip=" + geolocationData.ip + "&city=" + geolocationData.city + "&country_code=" + geolocationData.country_code + "&latitude=" + geolocationData.latitude + "&longitude=" + geolocationData.longitude + "&caption=" + caption + "&username=" + username + "&photoURL=" + photoURL, true);
     xmlhttp.send();
   }
 }
